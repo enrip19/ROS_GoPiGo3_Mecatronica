@@ -31,14 +31,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-          <box size="0.5 0.25 0.125"/>
+          <box size="0.20 0.09 0.06"/>
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-          <box size="0.5 0.25 0.125"/>
+          <box size="0.20 0.09 0.06"/>
       </geometry>
     </collision>
     <inertial>
@@ -70,7 +70,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="1.570795 0 0" />
       <geometry>
-          <cylinder length="0.05" radius="0.1" />
+          <cylinder length="0.02" radius="0.03" />
       </geometry>
       <material name="orange"/>
     </visual>
@@ -78,7 +78,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="1.570795 0 0" />
       <geometry>
-          <cylinder length="0.05" radius="0.1" />
+          <cylinder length="0.02" radius="0.03" />
       </geometry>
     </collision>
     <inertial>
@@ -91,14 +91,14 @@
   <joint name="joint_right_wheel" type="continuous">
     <parent link="base_link"/>
     <child link="right_wheel"/>
-    <origin xyz="0.1 -0.15 0.0125" rpy="0 0 0" /> 
+    <origin xyz="0.01 -0.045 -0.03" rpy="0 0 0" /> 
     <axis xyz="0 1 0" />
   </joint>
 <!-- Left Wheel JOINT base_link -->
   <joint name="joint_left_wheel" type="continuous">
     <parent link="base_link"/>
     <child link="left_wheel"/>
-    <origin xyz="0.1 0.15 0.0125" rpy="0 0 0" /> 
+    <origin xyz="0.01 0.045 -0.03" rpy="0 0 0" /> 
     <axis xyz="0 1 0"/>
   </joint>
 <!-- Left Wheel -->
@@ -106,7 +106,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="1.570795 0 0" />
       <geometry>
-          <cylinder length="0.05" radius="0.1" />
+          <cylinder length="0.02" radius="0.03" />
       </geometry>
       <material name="orange"/>
     </visual>
@@ -114,7 +114,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="1.570795 0 0" />
       <geometry>
-          <cylinder length="0.05" radius="0.1" />
+          <cylinder length="0.02" radius="0.03" />
       </geometry>
     </collision>
     <inertial>
