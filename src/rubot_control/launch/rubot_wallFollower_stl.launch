@@ -1,0 +1,53 @@
+<launch>
+  <arg name="world" default="long_wall.world"/> 
+  <arg name="model" default="gopigo3" />
+  <arg name="x_pos" default="-5.0"/>
+  <arg name="y_pos" default="0.0"/>
+  <arg name="z_pos" default="0.0"/>
+  
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find gazebo_control)/worlds/$(arg world)"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Robot URDF definition -->
+  <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find gopigo3_description)/urdf/$(arg model).urdf.xacro'"/>
+  <param name="robot_description" command="$(arg urdf_file) 
+                    distance:=true
+                    pi_camera:=true
+                    lds:=true
+                    imu:=true "/>
+  
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"
+    args="-urdf -model gopigo3 -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+
+  <!-- send fake joint values -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="False"/>
+  </node>
+  <!-- Combine joint values -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find rubot_control)/rviz/rubot_nav.rviz" required="true"/>
+  <!-- Navigation Program   -->
+    <arg name="kp" default="1" />
+    <arg name="ki" default="0" />
+    <arg name="kd" default="0" />
+    <arg name="initialDistance" default="0" />
+    <arg name="projectedLongitude" default="0.1" />
+    <arg name="theta" default="20.0" />
+    <arg name="forwardSpeed" default="0.05" />
+  <node name="wall_follower_P_controller" pkg="rubot_control" type="wall_follower_enric.py" output="screen" >
+        <param name="kp" value="$(arg kp)"/>
+        <param name="ki" value="$(arg ki)"/>
+        <param name="initialDistance" value="$(arg initialDistance)"/>
+        <param name="projectedLongitude" value="$(arg projectedLongitude)"/>
+        <param name="theta" value="$(arg theta)"/>
+        <param name="forwardSpeed" value="$(arg forwardSpeed)"/>
+  </node>
+</launch>

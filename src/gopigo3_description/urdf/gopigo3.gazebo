@@ -48,19 +48,19 @@
     </inertial>
     <!-- Caster attachment -->
     <visual name="caster_visual">
-      <origin xyz="-0.225 0 -0.0625" rpy="0 0 0" />
+      <origin xyz="-0.08 0 -0.050" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.025" />
+        <sphere radius="0.012" />
       </geometry>
     </visual>
     <collision name="caster_collision">
-      <origin xyz="-0.225 0 -0.0625" rpy="0 0 0" />
+      <origin xyz="-0.08 0 -0.050" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.025" />
+        <sphere radius="0.012" />
       </geometry>
     </collision>
     <inertial name="caster_inertia">
-      <origin xyz="-0.225 0 -0.0625" rpy="0 0 0" />
+      <origin xyz="-0.08 0 -0.050" rpy="0 0 0" />
       <mass value="0.15"/>
       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
@@ -129,7 +129,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 1.570795 0" />
       <geometry>
-        <mesh filename="package://gopigo3_description/meshes/piCamera.stl" scale="0.0025 0.0025 0.0025"/>
+        <mesh filename="package://gopigo3_description/meshes/piCamera.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="yellow"/>
     </visual>
@@ -150,7 +150,7 @@
 <!-- 2D Camera JOINT base_link -->
   <joint name="joint_camera" type="fixed">
     <axis xyz="0 0 1" />
-    <origin xyz="0.25 0 0.025" rpy="0 0 0"/>
+    <origin xyz="0.1 0 0" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="camera"/>
   </joint>
@@ -160,7 +160,7 @@
     <visual name="sensor_body">
       <origin xyz="0 0 0.04" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://gopigo3_description/meshes/X4.stl" scale="0.002 0.002 0.002"/> 
+        <mesh filename="package://gopigo3_description/meshes/X4.stl" scale="0.001 0.001 0.001"/> 
       </geometry>
       <material name="yellow"/>
     </visual>
@@ -183,7 +183,7 @@
 <!-- LIDAR base_scan JOINT base_link -->
   <joint name="scan_joint" type="fixed">
     <axis xyz="0 0 1" />
-    <origin xyz="0 0 0.15" rpy="0 0 0"/>
+    <origin xyz="0 0 0.05" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="base_scan"/>
   </joint>
